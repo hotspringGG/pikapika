@@ -723,6 +723,16 @@ class Method {
     return _flatInvoke("saveDownloadAndExportPath", folder);
   }
 
+  /// 使用下载缓存-配置获取
+  Future loadDownloadCachePath() {
+    return _flatInvoke("loadDownloadCachePath", "");
+  }
+
+  /// 使用下载缓存-设置
+  Future saveDownloadCachePath(String folder) {
+    return _flatInvoke("saveDownloadCachePath", folder);
+  }
+
   /// 切换安全策略 (安卓禁止截图, 录屏, 不显示在任务视图)
   Future androidSecureFlag(bool flag) {
     return _channel.invokeMethod("androidSecureFlag", {

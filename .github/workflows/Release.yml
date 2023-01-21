@@ -58,10 +58,13 @@ jobs:
             flutter_version: '2.10.3'
           - target: macos
             host: macos-latest
-            flutter_version: '2.10.3'
+            flutter_version: '3.3.10'
+          - target: linux
+            host: ubuntu-latest
+            flutter_version: '3.3.10'
           - target: ios
             host: macos-latest
-            flutter_version: '3.3.4'
+            flutter_version: '3.3.10'
           - target: android-arm32
             host: ubuntu-latest
             flutter_version: '2.10.5'
@@ -73,13 +76,13 @@ jobs:
             flutter_version: '2.10.5'
           - target: android-arm32
             host: ubuntu-latest
-            flutter_version: '3.3.4'
+            flutter_version: '3.3.10'
           - target: android-arm64
             host: ubuntu-latest
-            flutter_version: '3.3.4'
+            flutter_version: '3.3.10'
           - target: android-x86_64
             host: ubuntu-latest
-            flutter_version: '3.3.4'
+            flutter_version: '3.3.10'
 
     runs-on: ${{ matrix.config.host }}
 
@@ -210,7 +213,7 @@ jobs:
           mv appimagetool-x86_64.AppImage ${GITHUB_WORKSPACE}/bin/appimagetool
           echo ::add-path::${GITHUB_WORKSPACE}/bin
           sudo apt-get update
-          sudo apt-get install -y libgl1-mesa-dev xorg-dev
+          sudo apt-get install -y libgl1-mesa-dev xorg-dev libfuse2
 
       - name: Install hover (desktop)
         if: steps.check_asset.outputs.skip_build != 'true' && ( matrix.config.target == 'linux' || matrix.config.target == 'windows' || matrix.config.target == 'macos')
@@ -250,6 +253,7 @@ jobs:
       - name: Build (windows)
         if: steps.check_asset.outputs.skip_build != 'true' && matrix.config.target == 'windows'
         run: |
+          sed -i "s/3316dd8728419ad3534e3f6112aa6291f587078a/ac5c83dd5ff1ddfae2f642401f67db550428aee3/g" pubspec.yaml
           hover build windows
           curl -JOL https://github.com/niuhuan/static-resources/releases/download/windows_build_tools/Resource_Hacker_5.1.8.zip
           Expand-Archive .\Resource_Hacker_5.1.8.zip

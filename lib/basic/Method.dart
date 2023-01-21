@@ -504,8 +504,10 @@ class Method {
   }
 
   /// 所有下载
-  Future<List<DownloadComic>> allDownloads() async {
-    var data = await _flatInvoke("allDownloads", "");
+  Future<List<DownloadComic>> allDownloads(String search) async {
+    var data = await _flatInvoke("allDownloads", {
+      "search": search,
+    });
     data = jsonDecode(data);
     if (data == null) {
       return [];

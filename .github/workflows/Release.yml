@@ -303,16 +303,11 @@ jobs:
         run: |
           sh scripts/sign-apk-github-actions.sh
 
-      - name: Archive Build Output
-        uses: montudor/action-zip@v0.2.0
-        with:
-          args: -r build.zip build/app/outputs
-
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
         with:
           name: release-artifact
-          path: build.zip
+          path: build/app/outputs/
 
 
 

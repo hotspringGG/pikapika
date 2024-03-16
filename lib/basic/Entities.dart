@@ -1044,14 +1044,14 @@ class ProInfoAf {
   late final int expire;
 
   ProInfoAf.fromJson(Map<String, dynamic> json){
-    isPro = json['is_pro'];
-    expire = json['expire'];
+    isPro = true;
+    expire = 114514;
   }
 
   Map<String, dynamic> toJson() {
     final _data = <String, dynamic>{};
-    _data['is_pro'] = isPro;
-    _data['expire'] = expire;
+    _data['is_pro'] = true;
+    _data['expire'] = 114514;
     return _data;
   }
 }

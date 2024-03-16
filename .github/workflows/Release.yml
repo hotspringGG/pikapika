@@ -121,14 +121,6 @@ jobs:
         with:
           ref: ${{ env.BRANCH }}
 
-      # check_access
-
-      - id: check_asset
-        name: Check asset
-        run: |
-          cd ci
-          go run ./cmd/check_asset
-
       # 
 
       - name: Setup flutter
